@@ -1,22 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 13:20:15 by saolivei          #+#    #+#             */
-/*   Updated: 2018/12/13 15:56:12 by saolivei         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "ft_printf.h"
 #include <stdio.h>
 
-int	main()
+int main(void)
 {
-	void *pointer;
-	printf("printf: %p and %s\n", pointer, "this string");
-	ft_printf("ft_printf: %p and %s", pointer, "this string");
-	write(1, "\n", 1);
+    short i;
+
+    i = 1234567890;
+    printf("Testing string left_just .20 %-.20hd \n", 1234567890);
+    printf("Testing string           .20 %.20hd \n", 1234567890);
+    printf("Testing string left_just -20 %-20hd \n", 1234567890);
+    printf("Testing string         08.20 %8.20hd \n", 1234567890);
 }

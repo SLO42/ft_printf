@@ -6,7 +6,7 @@
 #    By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/11 11:04:11 by saolivei          #+#    #+#              #
-#    Updated: 2018/12/13 15:56:12 by saolivei         ###   ########.fr        #
+#    Updated: 2019/01/23 16:30:53 by saolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS = ft_atoi.c ft_bzero.c ft_intlen.c ft_isalnum.c ft_isalpha.c \
 			ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 			ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c \
 			ft_toupper.c ft_wordcountd.c ft_putchar_fd.c get_next_line.c\
-			ft_rand.c ft_create_hex.c ft_recalloc.c ft_vector.c\
+			ft_rand.c ft_create_hex.c ft_recalloc.c ft_vector.c ft_numlen.c\
+			ft_ltoa.c\
 
 OP = $(SRCS:.c=.o)
 

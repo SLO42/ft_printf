@@ -6,27 +6,11 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 01:32:37 by saolivei          #+#    #+#             */
-/*   Updated: 2018/12/13 15:56:14 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/01/22 15:15:20 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void    ft_printhex(long long data)
-{
-    static char hex[] = "0123456789abcdef";
-    static char        buf[50];
-    char *ptr;
-
-
-    while (data != 0)
-    {
-        *--ptr = hex[data % 16];
-        data /= 16;
-    }
-    ft_putstr("0x");
-    ft_putstr(ptr);
-}
 
 int     ft_vfprintf(FILE *stream, const char *format, va_list args)
 {
@@ -34,16 +18,26 @@ int     ft_vfprintf(FILE *stream, const char *format, va_list args)
     char        *tmp;
 
     prtf.fmt = (char *)format;
-    ft_vector_init(&(prtf.output), (sizeof(format)));
+    prtf.output = ft_lstnew(NULL, 0);
+    prtf.len = 0;
     while ((tmp = ft_strchr(prtf.fmt, '%')) != 0)
     {
-        ft_vector_nappend(&(prtf.output), prtf.fmt, (tmp - prtf.fmt));
-        prtf.fmt = tmp + 1;
+        ft_lstadd(prtf.output, ft_lstnew(prtf.fmt, tmp - prtf.fmt));
+        //prtf.output = ft_lstnew(prtf.fmt, tmp - prtf.fmt);//ft_vector_nappend(&(prtf.output), prtf.fmt, (tmp - prtf.fmt));
+        prtf.fmt = tmp;
         parse_f(args, &(prtf));
     }
-    ft_vector_appened(&(prtf.output), prtf.fmt);
-    write(stream->_fileno, &(prtf.output), prtf.output.len);
-    return (prtf.output.len);
+    if (!prtf.output)
+        prtf.output = ft_lstnew(prtf.fmt, ft_strlen(prtf.fmt));
+    else
+        ft_lstadd(prtf.output, ft_lstnew(prtf.fmt, ft_strlen(prtf.fmt)));
+    while (prtf.output)
+    {
+        write(stream->_file, &prtf.output->content, prtf.output->content_size);
+        prtf.len += prtf.output->content_size;
+        prtf.output = prtf.output->next;
+    }
+    return (prtf.len);
 }
 
 int     ft_printf(const char *format, ...)
@@ -60,21 +54,18 @@ int     ft_printf(const char *format, ...)
 void    printf_get_spec(t_printf *prtf, va_list args)
 {
     int i;
-
+    char values[19] = "%csdioxXufFeEaAgGnp";
+    char *spot;
     i = -1;
-    t_printf_spec       g_spec[19] =
-    {
-        {'%', &spec_percentage},
-        {'c', &spec_char},
-        {'s', &spec_string},
-        {'d', &spec_signed_int},
-        {'i', &spec_signed_int},
-        {'o', &spec_octal},
-    };
-    while (++i < 6)
-        if (CMP(*prtf->fmt, g_spec[i].spec))
-        {
-            g_spec[i].func(prtf,args);
-            return ;
-        }
+
+    spot = ft_strchr(values, *prtf->fmt);
+    if (CMP(spot,"%"))
+        return (spec_percentage(prtf));
+    else if (CMP(spot,"c"))
+        return (spec_char(prtf, args));
+    else if (CMP(spot, "s"))
+        return (spec_string(prtf, args));
+    else if (CMP(spot, "d") || CMP(spot, "i"))
+        return (spec_signed_int(prtf, args));
+
 }

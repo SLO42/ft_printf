@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 14:57:37 by saolivei          #+#    #+#             */
-/*   Updated: 2018/12/13 12:40:36 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/01/23 16:31:18 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int					get_next_line(const int fd, char **line);
 int					ft_rand(int max);
 int 				ft_vector_init(t_vector *vector, size_t init_cap);
 
+short				ft_atosh(char const *str);
+
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strdup(const char *s1);
 char				*ft_strcpy(char *dst, const char *src);
@@ -75,6 +77,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				*ft_itoa(int n);
+char				*ft_ltoa(long n);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_create_hex(void);
 
