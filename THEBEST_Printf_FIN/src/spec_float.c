@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:19:25 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/20 20:24:11 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/24 11:25:51 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void		spec_float__l(t_printf *prtf, va_list args)
 {
 	char *num;
 
-	num = ft_ftoa((long double)va_arg(args, long double), prtf);
-	PPRE = DIFP;
+	num = handle_float(prtf, args);
 	if (NOT1(prtf->args->flags->left_just))
 	{
 		PRECK(num, ft_strlen(num));
@@ -52,8 +51,7 @@ void		spec_float_float(t_printf *prtf, va_list args)
 {
 	char *num;
 
-	num = ft_ftoa((float)va_arg(args, double), prtf);
-	PPRE = DIFP;
+	num = handle_float(prtf, args);
 	if (NOT1(prtf->args->flags->left_just))
 	{
 		PRECK(num, ft_strlen(num));
@@ -72,8 +70,7 @@ void		spec_float_l(t_printf *prtf, va_list args)
 {
 	char *num;
 
-	num = ft_ftoa(va_arg(args, double), prtf);
-	PPRE = DIFP;
+	num = handle_float(prtf, args);
 	if (NOT1(prtf->args->flags->left_just))
 	{
 		PRECK(num, ft_strlen(num));
@@ -90,7 +87,8 @@ void		spec_float_l(t_printf *prtf, va_list args)
 
 void		spec_float(t_printf *prtf, va_list args)
 {
-	PPRE = (PPRE == -1) ? 6 : PPRE;
+	if (prtf->args->pre < 0)
+		prtf->args->pre = 6;
 	if (NOT1(prtf->args->stats->pf__l))
 		spec_float__l(prtf, args);
 	else if (NOT1(prtf->args->stats->pf_l))

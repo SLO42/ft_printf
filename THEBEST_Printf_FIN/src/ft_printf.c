@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 01:32:37 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/20 15:15:27 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/24 12:25:19 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_printf	*init(const char *format)
 	return (prtf);
 }
 
-int				ft_vfprintf(const char *format, va_list args)
+int				ft_vfprintf(int fd, const char *format, va_list args)
 {
 	t_printf	*prtf;
 	char		*tmp;
@@ -51,7 +51,7 @@ int				ft_vfprintf(const char *format, va_list args)
 	if (*prtf->fmt != 0)
 		ft_vector_appened((prtf->output), prtf->fmt);
 	if (prtf->output->len)
-		WRITE_TO_STREAM;
+		write(fd, CONTENT, CONTENT_SIZE);
 	ret = prtf->output->len;
 	ft_del_prtf(prtf);
 	return (ret);
@@ -63,7 +63,7 @@ int				ft_printf(const char *format, ...)
 	int			ret;
 
 	va_start(args, format);
-	ret = ft_vfprintf(format, args);
+	ret = ft_vfprintf(1, format, args);
 	va_end(args);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 #    By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/11 11:04:11 by saolivei          #+#    #+#              #
-#    Updated: 2019/02/17 21:53:13 by saolivei         ###   ########.fr        #
+#    Updated: 2019/02/24 13:30:41 by saolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OP = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@gcc -Wall -Wextra -Werror -g -c $(SRCS)
+	@gcc -Wall -Wextra -Werror -c $(SRCS)
 	@ar rc $(NAME) $(OP)
 	@ranlib $(NAME)
 

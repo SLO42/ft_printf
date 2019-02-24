@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 16:00:16 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/19 16:35:43 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/24 13:28:56 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_vector_free(t_vector *vector)
 {
 	if (vector->data && vector->cap > 0)
 	{
-		ft_strdel(&vector->data);
+		free(vector->data);
 		vector->data = NULL;
 	}
 }

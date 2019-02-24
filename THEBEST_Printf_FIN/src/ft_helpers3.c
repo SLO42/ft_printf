@@ -6,13 +6,13 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:41:31 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/21 11:57:40 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/24 12:10:35 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	spec_signed_helper(t_printf *prtf, char *num, size_t len)
+void		spec_signed_helper(t_printf *prtf, char *num, size_t len)
 {
 	if ((DIFP = DIFSZ(len, PPRE)) > 0)
 	{
@@ -27,13 +27,13 @@ void	spec_signed_helper(t_printf *prtf, char *num, size_t len)
 	precheck((num), len, prtf);
 }
 
-void	add_then_delete(char *str, size_t size, t_printf *prtf)
+void		add_then_delete(char *str, size_t size, t_printf *prtf)
 {
 	ft_prtf_add(str, size, prtf);
 	free(str);
 }
 
-void	precheck(char *str, size_t size, t_printf *prtf)
+void		precheck(char *str, size_t size, t_printf *prtf)
 {
 	int i;
 
@@ -59,4 +59,35 @@ void	precheck(char *str, size_t size, t_printf *prtf)
 		}
 	}
 	add_then_delete(str, size, prtf);
+}
+
+uintmax_t	prtf_power(uintmax_t nb, uintmax_t power)
+{
+	uintmax_t	i;
+
+	if (power == 0)
+		return (1);
+	if (power % 2 == 0)
+	{
+		i = prtf_power(nb, power / 2);
+		return (i * i);
+	}
+	else
+		return (nb * prtf_power(nb, power - 1));
+}
+
+char		*fix_pre(char *num, size_t dif)
+{
+	char	*tmp;
+	char	*res;
+	size_t	i;
+
+	i = -1;
+	tmp = ft_strnew(dif);
+	while (++i < dif)
+		tmp[i] = '0';
+	res = ft_strjoin(num, tmp);
+	free(num);
+	free(tmp);
+	return (res);
 }
