@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 10:41:57 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/24 13:28:58 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:49:37 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void				printf_get_spec(t_printf *prtf, va_list args);
 void				free_it_all(t_printf *prtf);
 void				ft_exit(short num, t_printf *prtf);
 void				ft_del_prtf(t_printf *prtf);
-
+void				ft_vector_appened_null(t_vector *vector);
 void				parse_f(va_list args, t_printf *prtf);
 int					if_alt(t_printf *prtf, int size, char *num);
 int					ft_chr_in_str(const char *t, int s, char c, t_printf *p);

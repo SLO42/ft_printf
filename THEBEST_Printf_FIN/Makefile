@@ -6,7 +6,7 @@
 #    By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 18:52:46 by saolivei          #+#    #+#              #
-#    Updated: 2019/02/24 13:38:52 by saolivei         ###   ########.fr        #
+#    Updated: 2019/02/25 15:48:51 by saolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = ft_ftoa.c ft_helpers.c ft_helpers2.c ft_parsef.c \
 			ft_spec_unsigned_int_l.c ft_spec_unsigned_int_ll.c \
 			ft_spec_unsigned_int_uint.c ft_spec.c spec_float.c \
 			spec_signed_unsigned.c ft_exit.c ft_lltoa.c ft_ftoa.c \
-			ft_chr_in_str.c ft_clean_parse.c ft_helpers3.c\
+			ft_chr_in_str.c ft_clean_parse.c ft_helpers3.c \
 
 SRCD = ./src/
 INCL = ./incl/

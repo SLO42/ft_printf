@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:41:31 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/24 12:10:35 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:50:35 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char		*fix_pre(char *num, size_t dif)
 	tmp = ft_strnew(dif);
 	while (++i < dif)
 		tmp[i] = '0';
-	res = ft_strjoin(num, tmp);
+	res = ft_strjoin(tmp, num);
 	free(num);
 	free(tmp);
 	return (res);

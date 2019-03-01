@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 14:57:37 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/20 13:23:56 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:55:20 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char				*ft_itoa(int n);
 char				*ft_itoa_base(int n, uint32_t base);
 char				*ft_ltoa(long n);
 char				*ft_ltoa_base(long n, uint32_t base);
-char				*ft_ulltoa_base(unsigned long long n, uint32_t base);
+char				*ft_ulltoa_base(uintmax_t n, uint32_t base);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_create_hex(void);
 

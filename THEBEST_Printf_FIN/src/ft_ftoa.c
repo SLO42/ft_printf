@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/23 14:45:39 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/24 12:10:16 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:13:31 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ static int	isnan(long double num)
 	union u_union	u;
 
 	u.d = (double)num;
-	if (num != num)
+	if (u.ld == 0x7FF7FFFFFFFFFFFF)
 		return (1);
-	return (u.ld == 0x7FF800000000000ll || u.ld == 0xFFF8000000000000ll);
+	else
+		return (0);
 }
 
 static int	isinf(long double num)
@@ -27,15 +28,15 @@ static int	isinf(long double num)
 	union u_union	u;
 
 	u.d = (double)num;
-	if (u.ld == 0x7FF0000000000000ll)
+	if (u.ld == 0x7FF0000000000000)
 		return (1);
-	else if (u.ld == 0xFFF0000000000000ll)
+	else if (u.ld == 0xFFF0000000000000)
 		return (-1);
 	else
 		return (0);
 }
 
-static char	*edge_nan_inf(t_printf *prtf, int inf)
+static char	*edge_nan_inf(t_printf *prtf, int inf, long double num)
 {
 	if (inf)
 	{
@@ -47,13 +48,15 @@ static char	*edge_nan_inf(t_printf *prtf, int inf)
 		else
 			return (ft_strdup("inf"));
 	}
-	else
+	else if (isnan(num))
 	{
 		if (SPEC == 'F')
 			return (ft_strdup("NAN"));
 		else
 			return (ft_strdup("nan"));
 	}
+	else
+		return (NULL);
 }
 
 static char	*float_with_frac(t_printf *prtf, long double num)
@@ -93,7 +96,7 @@ char		*handle_float(t_printf *prtf, va_list args)
 	else
 		num = (long double)va_arg(args, double);
 	if (isnan(num) || isinf(num))
-		return (edge_nan_inf(prtf, isinf(num)));
+		return (edge_nan_inf(prtf, isinf(num), num));
 	if ((double)0.0 > num)
 	{
 		prtf->args->stats->sign = 1;

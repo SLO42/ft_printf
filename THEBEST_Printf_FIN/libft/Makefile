@@ -6,7 +6,7 @@
 #    By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/11 11:04:11 by saolivei          #+#    #+#              #
-#    Updated: 2019/02/24 13:30:41 by saolivei         ###   ########.fr        #
+#    Updated: 2019/02/24 15:38:28 by saolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,9 @@ $(NAME): $(SRCS)
 
 clean: 
 	@/bin/rm -f $(OP)
+	@/bin/rm -f $(NAME)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
-

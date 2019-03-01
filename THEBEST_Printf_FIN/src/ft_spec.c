@@ -6,7 +6,7 @@
 /*   By: saolivei <saolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:36:11 by saolivei          #+#    #+#             */
-/*   Updated: 2019/02/20 19:07:33 by saolivei         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:15:35 by saolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	spec_char(t_printf *prtf, va_list args)
 
 	if (!(c = ft_strnew(2)))
 		ft_exit(-1, prtf);
-	(c[0] = (unsigned char)va_arg(args, unsigned int)) < 0 ? c[0] *= -1 : 0;
+	c[0] = (char)va_arg(args, int);
 	dif = DIFSZ(1, PWIDTH);
 	if (dif)
 	{
